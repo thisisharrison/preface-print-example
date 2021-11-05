@@ -19,7 +19,7 @@
             <li><a href="3-method.html">Method 3</a></li>
         </ul>
 
-        <i>
+        <i id="hidden">
             Try to print this page
             <br />
             This approach "injects" stylesheet when user attempts to print.
@@ -44,24 +44,22 @@
         </p>
 
         <script>
-            (function () {
-                const css = `#hidden{display: none;}`;
-                const style = document.createElement("style");
-                const head = document.querySelector("head");
-                window.onbeforeprint = function (e) {
-                    head.appendChild(style);
-                    style.type = "text/css";
-                    style.media = "print";
-                    if (style.styleSheet) {
-                        style.styleSheet.cssText = css;
-                    } else {
-                        style.appendChild(document.createTextNode(css));
-                    }
-                };
-                window.onafterprint = function (e) {
-                    style.remove();
-                };
-            })();
+            const css = `#hidden{display: none;}`;
+            const style = document.createElement("style");
+            const head = document.querySelector("head");
+            window.onbeforeprint = function (e) {
+                head.appendChild(style);
+                style.type = "text/css";
+                style.media = "print";
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = css;
+                } else {
+                    style.appendChild(document.createTextNode(css));
+                }
+            };
+            window.onafterprint = function (e) {
+                style.remove();
+            };
         </script>
     </body>
 </html>
