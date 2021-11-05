@@ -32,12 +32,6 @@ function printVisible(html) {
     print(html);
 }
 
-document.addEventListener("keydown", e => {
-    if (e.code === "MetaLeft" && e.code === "KeyP") {
-        console.log(e.code);
-    }
-});
-
 document.onkeydown = function (e) {
     if ((e.ctrlKey && e.code === "KeyP") || (e.metaKey && e.code === "KeyP")) {
         alert("Not allowed!");

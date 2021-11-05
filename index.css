@@ -24,6 +24,10 @@ li {
     padding: 1rem;
 }
 
+pre {
+    display: inline;
+}
+
 /* For disabling highlight */
 * {
     user-select: none;

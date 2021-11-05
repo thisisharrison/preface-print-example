@@ -1,5 +1,5 @@
-<!-- Method 1 -->
-<!-- Print style sheets -->
+<!-- Method 3 -->
+<!-- Print style sheets, only inject styles when user prints -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,14 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="index.css" />
         <script src="index.js"></script>
-
-        <!-- Media Query on Print and display "nothing" for hidden content -->
-        <style media="print">
-            #hidden {
-                display: none;
-            }
-        </style>
-
         <title>Document</title>
     </head>
     <body>
@@ -30,15 +22,11 @@
         <i>
             Try to print this page
             <br />
-            This method has a
+            This approach "injects" stylesheet when user attempts to print.
+            <br />
+            In this method, JavaScript will add the
             <pre>style</pre>
-            tag with
-            <pre>media</pre>
-            attribute. It means that when you print, use this alternative stylesheet.
-            <br />
-            But this can be "hacked" by deleting this stylesheet before print.
-            <br />
-            See <a href="3-method.html">Method 3</a> for a solution.
+            tag when user attempts to print and then cleans up after.
         </i>
 
         <p>Visible</p>
@@ -54,5 +42,26 @@
             <b>HIDE THIS</b> -> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat similique minima nisi autem quo iusto expedita. Saepe, dolores quaerat? Consectetur sapiente dolor
             inventore in laboriosam doloribus fuga porro iure quia.
         </p>
+
+        <script>
+            (function () {
+                const css = `#hidden{display: none;}`;
+                const style = document.createElement("style");
+                const head = document.querySelector("head");
+                window.onbeforeprint = function (e) {
+                    head.appendChild(style);
+                    style.type = "text/css";
+                    style.media = "print";
+                    if (style.styleSheet) {
+                        style.styleSheet.cssText = css;
+                    } else {
+                        style.appendChild(document.createTextNode(css));
+                    }
+                };
+                window.onafterprint = function (e) {
+                    style.remove();
+                };
+            })();
+        </script>
     </body>
 </html>
