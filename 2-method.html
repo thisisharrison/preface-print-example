@@ -1,0 +1,44 @@
+<!-- Method 2 -->
+<!-- Print external html using iFrame -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="index.css" />
+        <script src="index.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Hide Content when Printing</h1>
+
+        <ul id="hidden">
+            <li><a href="1-method.html">Method 1</a></li>
+            <li><a href="2-method.html">Method 2</a></li>
+        </ul>
+
+        <i>Try to print this page</i>
+
+        <br />
+
+        <button id="print-button" onClick="printVisible('2-method-only-visible.html')">🖨 Print</button>
+
+        <p>Visible</p>
+
+        <!-- Although I have IDs here, we're only using it to color the text -->
+        <p id="hidden">Hidden</p>
+
+        <p>
+            <b>SHOW THIS</b> -> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat similique minima nisi autem quo iusto expedita. Saepe, dolores quaerat? Consectetur sapiente dolor
+            inventore in laboriosam doloribus fuga porro iure quia.
+        </p>
+
+        <p id="hidden">
+            <b>HIDE THIS</b> -> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat similique minima nisi autem quo iusto expedita. Saepe, dolores quaerat? Consectetur sapiente dolor
+            inventore in laboriosam doloribus fuga porro iure quia.
+        </p>
+
+        <script src="2-index.js"></script>
+    </body>
+</html>
